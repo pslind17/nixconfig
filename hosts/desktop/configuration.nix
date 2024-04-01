@@ -8,7 +8,12 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      /home/pslind/nixconfig/nixosModules/mymodules.nix
     ];
+
+  basics.enable = true;
+  desktopapps.enable = true;
+  plasma.enable = true;
 
 
   networking.hostName = "nixos"; # Define your hostname.
