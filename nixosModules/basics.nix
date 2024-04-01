@@ -2,14 +2,7 @@
 
 { pkgs, lib, config, ... }: {
 
-  options = {
-    basics.enable = 
-      lib.mkEnableOption "enables basics";
-  };
-
-  config = lib.mkIf config.basics.enable {
-
-    # Enable services needed for all machines
+  # Enable services needed for all machines
     services.tailscale.enable = true;
 
     # Packages needed on all machines
@@ -31,4 +24,6 @@
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 
-  };
+
+
+  }

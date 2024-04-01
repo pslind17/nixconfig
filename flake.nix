@@ -21,12 +21,11 @@ in
 {
 
 nixosConfigurations = {
- myNixos = nixpkgs.lib.nixosSystem {
+ nixos = nixpkgs.lib.nixosSystem {
    specialArgs = { inherit system; };
 
    modules = [
    ./hosts/desktop/configuration.nix
-   ./nixosModules
    ];
    };
   };

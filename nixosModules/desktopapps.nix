@@ -2,13 +2,6 @@
 
 { pkgs, lib, config, ... }: {
 
-  options = {
-    desktopapps.enable = 
-      lib.mkEnableOption "enables desktopapps";
-  };
-
-  config = lib.mkIf config.desktopapps.enable {
-
     environment.systemPackages = with pkgs; [
     gimp
     blender
@@ -33,4 +26,4 @@
   
   services.printing.enable = true;
   
-  };
+  }

@@ -8,11 +8,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../nixosModules/basics.nix
+      ../../nixosModules/plasma.nix
+      ../../nixosModules/desktopapps.nix
     ];
-
-  basics.enable = true;
-  desktopapps.enable = true;
-  plasma.enable = true;
 
 
   networking.hostName = "nixos"; # Define your hostname.
