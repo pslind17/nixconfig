@@ -26,6 +26,7 @@ nixosConfigurations = {
 
    modules = [
    ./hosts/desktop/configuration.nix
+   ./nixosModules
    ];
    };
   };
