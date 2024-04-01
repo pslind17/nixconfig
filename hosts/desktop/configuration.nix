@@ -18,35 +18,16 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Set your time zone.
-  time.timeZone = "America/Vancouver";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_CA.UTF-8";
-
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  #services.xserver.displayManager.gdm.enable = true;
-  #services.xserver.desktopManager.gnome.enable = true;
+  
   
   # Enable Plasma
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.displayManager.defaultSession = "plasmawayland";
+
 
   # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
+  
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -84,37 +65,13 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  	neofetch
-    gimp
-    blender
-    microsoft-edge
-    vscode
-    libreoffice
-    etcher
-    rpi-imager
-    partition-manager
-    cura
-    freecad
-    vlc
-    git
-    libsForQt5.kdeconnect-kde
-    distrobox
-    f3d
-    arduino
-  ];
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-19.1.9"
-  ];
+  
 
   virtualisation.docker.enable = true;
   virtualisation.docker.rootless = {
     enable = true;
     setSocketVariable = true;
   };
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -130,8 +87,6 @@
   };
 
   # List services that you want to enable:
-   services.flatpak.enable = true;
-   services.tailscale.enable = true;
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
