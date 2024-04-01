@@ -25,7 +25,7 @@ nixosConfigurations = {
    specialArgs = { inherit system; };
 
    modules = [
-   ./nixos/configuration.nix
+   ./hosts/desktop/configuration.nix
    ];
    };
   };
