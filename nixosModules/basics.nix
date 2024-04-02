@@ -23,7 +23,40 @@
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+    users.users.pslind = {
+    isNormalUser = true;
+    description = "Peyton Slind";
+    extraGroups = [ "networkmanager" "wheel" "docker"];
+    packages = with pkgs; [
+      firefox
+    #  thunderbird
+    ];
+  };
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  
+
+  virtualisation.docker.enable = true;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+     # enableSSHSupport = true;
+  # };
+  services.avahi = {
+  enable = true;
+  nssmdns = true;
+  openFirewall = true;
+  };
 
   }
