@@ -18,7 +18,7 @@
 
     services.openssh = {
         enable = true;
-        passwordAuthentication = true;
+        settings.passwordAuthentication = true;
     };
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
