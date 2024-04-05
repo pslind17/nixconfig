@@ -30,5 +30,15 @@ nixosConfigurations = {
    };
   };
 
+nixosConfigurations = {
+ lightlaptop = nixpkgs.lib.nixosSystem {
+   specialArgs = { inherit system; };
+
+   modules = [
+   ./hosts/lightlaptop/configuration.nix
+   ];
+   };
+  };
+
   };
 }
