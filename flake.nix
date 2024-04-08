@@ -40,5 +40,15 @@ nixosConfigurations = {
    };
   };
 
+nixosConfigurations = {
+ next = nixpkgs.lib.nixosSystem {
+   specialArgs = { inherit system; };
+
+   modules = [
+   ./hosts/next/configuration.nix
+   ];
+   };
+  };
+
   };
 }
