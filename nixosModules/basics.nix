@@ -16,10 +16,7 @@
     time.timeZone = "America/Vancouver";
     i18n.defaultLocale = "en_CA.UTF-8";
 
-    services.openssh = {
-        enable = true;
-        passwordAuthentication = true;
-    };
+    services.openssh.enable = true;
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
