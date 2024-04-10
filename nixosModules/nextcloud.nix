@@ -7,6 +7,7 @@
         forceSSL = true;
         enableACME = true;
       };
+    };
 
     nextcloud = {
       enable = true;
@@ -33,14 +34,17 @@
         # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
         inherit calendar contacts mail notes onlyoffice tasks;
 
+        # Custom app installation example.
+
+      };
+
       config = {
         overwriteProtocol = "https";
         defaultPhoneRegion = "PT";
         dbtype = "pgsql";
         adminuser = "admin";
-        adminpassFile = "/home/pslind/";
+        adminpassFile = "/home/pslind/admin-pass";
       };
     };
-
   };
-};
+}
