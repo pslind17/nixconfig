@@ -9,6 +9,8 @@
       };
     };
 
+    security.acme.acceptTerms = true;
+
     nextcloud = {
       enable = true;
       hostName = "next";
