@@ -1,6 +1,8 @@
 { self, config, lib, pkgs, ... }:
 
 {
+  security.acme.acceptTerms = true;
+  
   services = {
     nginx.virtualHosts = {
       "next" = {
