@@ -2,7 +2,7 @@
 
 {
   security.acme.acceptTerms = true;
-  
+
   services = {
     nginx.virtualHosts = {
       "next" = {
@@ -10,8 +10,6 @@
         enableACME = true;
       };
     };
-
-    security.acme.acceptTerms = true;
 
     nextcloud = {
       enable = true;
