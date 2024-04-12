@@ -44,7 +44,7 @@
         defaultPhoneRegion = "PT";
         dbtype = "pgsql";
         adminuser = "admin";
-        adminpassFile = "/home/pslind/admin-pass";
+        #adminpassFile = "/home/pslind/admin-pass";
       };
     };
   };
