@@ -43,8 +43,8 @@
         overwriteProtocol = "https";
         defaultPhoneRegion = "PT";
         dbtype = "pgsql";
-        adminuser = "admin";
-        #adminpassFile = "/home/pslind/admin-pass";
+        #adminuser = "admin";
+        adminpassFile = "/home/pslind/admin-pass";
       };
     };
   };
