@@ -28,22 +28,11 @@
       maxUploadSize = "16G";
       https = true;
 
-      autoUpdateApps.enable = true;
-      extraAppsEnable = true;
-      extraApps = with config.services.nextcloud.package.packages.apps; {
-        # List of apps we want to install and are already packaged in
-        # https://github.com/NixOS/nixpkgs/blob/master/pkgs/servers/nextcloud/packages/nextcloud-apps.json
-        inherit calendar contacts mail notes onlyoffice tasks;
-
-        # Custom app installation example.
-
-      };
-
       config = {
         overwriteProtocol = "https";
         defaultPhoneRegion = "PT";
         dbtype = "pgsql";
-        #adminuser = "admin";
+        adminuser = "admin";
         adminpassFile = "/home/pslind/admin-pass";
       };
     };
