@@ -1,6 +1,9 @@
 { self, config, lib, pkgs, ... }:
 
 {
+  users.users.pslind.createHome = true;
+  users.users.pslind.homeMode = "750";
+
   services = {
     nginx.virtualHosts = {
       "next" = {
