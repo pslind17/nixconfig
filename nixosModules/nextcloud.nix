@@ -34,7 +34,7 @@
         defaultPhoneRegion = "PT";
         dbtype = "pgsql";
         adminuser = "admin";
-        #adminpassFile = "/home/pslind/nextcloud.pass";
+        adminpassFile = "/var/lib/nextcloud/nextcloud.pass";
       };
     };
   };
