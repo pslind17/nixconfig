@@ -33,7 +33,7 @@
         overwriteProtocol = "https";
         defaultPhoneRegion = "PT";
         dbtype = "pgsql";
-        adminuser = "admin";
+        adminuser = "pslind";
         adminpassFile = "/var/lib/nextcloud/nextcloud.pass";
       };
     };
