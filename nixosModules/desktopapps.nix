@@ -18,6 +18,7 @@
     distrobox
     f3d
     arduino
+    nextcloud-client
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
