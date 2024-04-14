@@ -30,7 +30,7 @@
       #S
 
       config = {
-        overwriteProtocol = "https";
+        overwriteProtocol = "http";
         defaultPhoneRegion = "PT";
         dbtype = "pgsql";
         adminuser = "pslind";
