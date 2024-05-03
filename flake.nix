@@ -50,5 +50,15 @@ nixosConfigurations = {
    };
   };
 
+nixosConfigurations = {
+ test = nixpkgs.lib.nixosSystem {
+   specialArgs = { inherit system; };
+
+   modules = [
+   ./hosts/test/configuration.nix
+   ];
+   };
+  };
+
   };
 }
