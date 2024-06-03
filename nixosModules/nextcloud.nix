@@ -27,11 +27,12 @@
       maxUploadSize = "16G";
       https = true;
 
-      #S
-
-      config = {
+      settings = {
         overwriteProtocol = "http";
         defaultPhoneRegion = "PT";
+      };
+
+      config = {
         dbtype = "pgsql";
         adminuser = "pslind";
         adminpassFile = "/var/lib/nextcloud/nextcloud.pass";
