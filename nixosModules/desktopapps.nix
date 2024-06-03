@@ -19,6 +19,7 @@
     f3d
     arduino
     nextcloud-client
+    openrocket
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
