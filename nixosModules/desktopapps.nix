@@ -8,7 +8,6 @@
     microsoft-edge
     vscode
     libreoffice
-    etcher
     rpi-imager
     partition-manager
     cura
