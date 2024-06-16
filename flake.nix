@@ -51,11 +51,11 @@ nixosConfigurations = {
   };
 
 nixosConfigurations = {
- test = nixpkgs.lib.nixosSystem {
+ seafile = nixpkgs.lib.nixosSystem {
    specialArgs = { inherit system; };
 
    modules = [
-   ./hosts/test/configuration.nix
+   ./hosts/seafile/configuration.nix
    ];
    };
   };
