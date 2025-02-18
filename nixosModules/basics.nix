@@ -9,6 +9,7 @@
     environment.systemPackages = with pkgs; [
   	neofetch
     git
+    python3Packages.distutils
     ];
     
 
