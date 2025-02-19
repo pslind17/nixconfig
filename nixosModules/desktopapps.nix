@@ -10,7 +10,6 @@
     libreoffice
     rpi-imager
     partition-manager
-    cura
     freecad
     vlc
     libsForQt5.kdeconnect-kde
