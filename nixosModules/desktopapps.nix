@@ -18,7 +18,6 @@
     arduino
     nextcloud-client
     openrocket
-    orca-slicer
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
