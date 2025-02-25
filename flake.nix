@@ -51,11 +51,11 @@ nixosConfigurations = {
   };
 
 nixosConfigurations = {
- seafile = nixpkgs.lib.nixosSystem {
-   specialArgs = { inherit system; };
+ rpi = nixpkgs.lib.nixosSystem {
+   specialArgs = { system = "aarch64-linux"; };
 
    modules = [
-   ./hosts/seafile/configuration.nix
+   ./hosts/rpi/configuration.nix
    ];
    };
   };
