@@ -11,7 +11,7 @@
       ../../nixosModules/basics.nix
     ];
 
-  boot.loader.grub.enable = true;
+  boot.loader.grub.enable = false;
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
