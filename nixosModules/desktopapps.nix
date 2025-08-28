@@ -16,9 +16,9 @@
     distrobox
     f3d
     arduino
-    nextcloud-client
     openrocket
     orca-slicer
+    popsicle
   ];
 
     nixpkgs.config.permittedInsecurePackages = [

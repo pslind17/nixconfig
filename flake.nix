@@ -2,7 +2,7 @@
   description = "NixOS desktop ocnfiguration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
   };
 
   outputs = { self, nixpkgs }:
@@ -20,6 +20,16 @@
 in
 {
 
+nixosConfigurations = {
+ king = nixpkgs.lib.nixosSystem {
+   specialArgs = { inherit system; };
+
+   modules = [
+   ./hosts/king/configuration.nix
+   ];
+   };
+  };
+  
 nixosConfigurations = {
  nixos = nixpkgs.lib.nixosSystem {
    specialArgs = { inherit system; };
