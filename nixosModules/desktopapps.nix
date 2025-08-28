@@ -9,7 +9,7 @@
     vscode
     libreoffice
     rpi-imager
-    partition-manager
+    kdePackages.partition-manager
     freecad
     vlc
     libsForQt5.kdeconnect-kde
@@ -28,7 +28,7 @@
   services.printing.enable = true;
   services.flatpak.enable = true;
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
