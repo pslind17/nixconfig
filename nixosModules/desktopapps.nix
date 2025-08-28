@@ -9,7 +9,6 @@
     vscode
     libreoffice
     rpi-imager
-    kdePackages.partition-manager
     freecad
     vlc
     libsForQt5.kdeconnect-kde
