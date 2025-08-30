@@ -18,6 +18,7 @@
     openrocket
     orca-slicer
     popsicle
+    deja-dup
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
