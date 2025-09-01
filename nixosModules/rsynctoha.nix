@@ -7,7 +7,7 @@
 # ...existing code...
 # ...existing code...
   fileSystems."/mnt/sambashare" = {
-    device = "homeassistant.local/media";
+    device = "//homeassistant.local/media";
     fsType = "cifs";
     options = [
       "username=pslind"
