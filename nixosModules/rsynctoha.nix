@@ -19,4 +19,22 @@
     ];
   };
 # ...existing code...
+    systemd.user.services.backup-desktop = {
+    description = "Backup Desktop to USB";
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = ''
+        ${pkgs.rsync}/bin/rsync -avh --delete ~/Desktop/ /mnt/sambashare/Desktop-backup/
+      '';
+    };
+  };
+
+  systemd.user.timers.backup-desktop = {
+    description = "Run Desktop Backup Daily";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "daily";
+      Persistent = true;
+    };
+  };
 }
