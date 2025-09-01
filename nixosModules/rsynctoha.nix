@@ -1,3 +1,4 @@
+{ pkgs, lib, config, ... }: {
 # ...existing code...
     environment.systemPackages = with pkgs; [
       rsync
@@ -18,3 +19,4 @@
     ];
   };
 # ...existing code...
+}
