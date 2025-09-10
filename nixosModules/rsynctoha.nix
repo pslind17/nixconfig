@@ -10,8 +10,7 @@
     device = "//homeassistant.local/media";
     fsType = "cifs";
     options = [
-      "username=pslind"
-      "password=EE95Lv!H"
+      "credentials=/home/pslind/nixconfig/nixosModules/smb-secrets"  # Path to your credentials file
       "uid=1000"  # Replace with your user ID
       "gid=100"   # Replace with your group ID
       "rw"
