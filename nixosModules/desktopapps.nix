@@ -11,7 +11,6 @@
     rpi-imager
     freecad
     vlc
-    libsForQt5.kdeconnect-kde
     distrobox
     f3d
     arduino
