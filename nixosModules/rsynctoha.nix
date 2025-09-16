@@ -23,7 +23,7 @@
     serviceConfig = {
       Type = "oneshot";
       ExecStart = ''
-        ${pkgs.rsync}/bin/rsync -avh --delete ~/Desktop/ /mnt/sambashare/Desktop-backup/
+        ${pkgs.rsync}/bin/rsync -avh --delete /home/pslind/Desktop/ /mnt/sambashare/Desktop-backup/
       '';
     };
   };
