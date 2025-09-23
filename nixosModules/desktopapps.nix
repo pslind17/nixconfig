@@ -18,7 +18,6 @@
     orca-slicer
     popsicle
     deja-dup
-    cider
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
