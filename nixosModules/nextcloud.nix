@@ -6,14 +6,6 @@
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-  services.nginx.virtualHosts."next" = {
-    root = "${pkgs.nextcloud31}/share/nextcloud";
-    locations."/" = {
-      proxyPass = "http://127.0.0.1:8080/";
-    };
-    # Add SSL config if using https
-  };
-
   services.nextcloud = {
     enable = true;
     hostName = "next";
