@@ -6,7 +6,7 @@
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-  package.pkgs = php;
+  package = pkgs.php;
 
   services.nextcloud = {
     enable = true;
