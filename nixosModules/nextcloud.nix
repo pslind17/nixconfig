@@ -35,7 +35,7 @@
       config = {
         dbtype = "pgsql";
         adminuser = "pslind";
-        adminpassFile = "/var/lib/nextcloud/nextcloud.pass";
+        adminpassFile = "/home/pslind/nextcloud.pass";
       };
     };
   };
