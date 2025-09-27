@@ -42,4 +42,4 @@
         adminpassFile = "/home/pslind/nextcloud.pass";
       };
     };
-  };
+  }
