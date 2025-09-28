@@ -8,12 +8,13 @@
     datadir = "/var/lib/nextcloud";
     hostName = "localhost";
 
-    # Explicit DB type required since 25.05
+    # Explicit DB type required in >=25.05
     config.dbtype = "sqlite";
-    services.nextcloud.autoSetup = false;
 
+    # Disable auto-setup so no adminpassFile is required
+    autoSetup = false;
   };
 
-  # Open firewall for HTTP (Nextcloud will configure nginx itself)
+  # Nextcloud module will handle nginx + php-fpm for us
   networking.firewall.allowedTCPPorts = [ 80 ];
 }
