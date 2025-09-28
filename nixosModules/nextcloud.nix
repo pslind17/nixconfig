@@ -1,29 +1,37 @@
 { config, pkgs, ... }:
 
 {
-  users.users.pslind.createHome = true;
-  users.users.pslind.homeMode = "750";
-
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
-
   services.nextcloud = {
     enable = true;
-    hostName = "next";
-    package = pkgs.nextcloud31;
+
+    # Choose your desired Nextcloud release (e.g., 29, 28, etc.)
+    package = pkgs.nextcloud29;
+
+    # Data directory
+    datadir = "/var/lib/nextcloud";
+
+    # Configure the host/domain name
+    hostName = "cloud.example.com";
+
+    # Enable automatic database (uses PostgreSQL by default)
     database.createLocally = true;
+
+    # Enable built-in redis cache for better performance
     configureRedis = true;
-    maxUploadSize = "16G";
+
+    # Automatically configure nginx + php-fpm
+    configureNginx = true;
+
+    # Optional: force HTTPS (make sure you configure certs below)
     https = true;
+  };
 
-    settings = {
-      overwriteProtocol = "http";
-      defaultPhoneRegion = "PT";
-    };
+  # Open firewall for HTTP/HTTPS
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-    config = {
-      dbtype = "pgsql";
-      adminuser = "admin";
-      adminpassFile = "/var/lib/nextcloud/adminpass.txt";
-       };
+  # Enable nginx (Nextcloud will add its own vhost config)
+  services.nginx.enable = true;
+
   };
 }
+
