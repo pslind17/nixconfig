@@ -32,5 +32,5 @@
   # Enable nginx (Nextcloud will add its own vhost config)
   services.nginx.enable = true;
 
-  };
+  }
 
