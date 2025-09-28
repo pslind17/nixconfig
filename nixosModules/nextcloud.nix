@@ -22,6 +22,8 @@
 
     config = {
       dbtype = "pgsql";
+      adminuser = "admin";
+      adminpass = "changeme";
        };
   };
 }
