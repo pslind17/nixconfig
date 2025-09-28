@@ -5,7 +5,7 @@
     enable = true;
 
     # Choose your desired Nextcloud release (e.g., 29, 28, etc.)
-    package = pkgs.nextcloud29;
+    package = pkgs.nextcloud31;
 
     # Data directory
     datadir = "/var/lib/nextcloud";
