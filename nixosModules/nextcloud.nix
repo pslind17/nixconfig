@@ -3,8 +3,6 @@
 {
   services.nextcloud = {
     enable = true;
-
-    # Pick your desired version
     package = pkgs.nextcloud29;
 
     datadir = "/var/lib/nextcloud";
@@ -13,21 +11,50 @@
     # Database
     database.createLocally = true;
 
-    # Caching
+    # Redis
     configureRedis = true;
 
-    # This replaces the old configureNginx
-    nginx.enable = true;
-
-    # Optional: force HTTPS (works with ACME)
-    https = true;
+    # HTTPS handled by nginx + acme, not by Nextcloud itself
+    https = false;
   };
 
-  # Open firewall ports
+  services.nginx = {
+    enable = true;
+    virtualHosts."cloud.example.com" = {
+      forceSSL = true;
+      enableACME = true;
+
+      locations."/" = {
+        proxyPass = "http://unix:/run/nextcloud-phpfpm/nextcloud.sock";
+        extraConfig = ''
+          client_max_body_size 512M;
+          fastcgi_buffers 64 4K;
+        '';
+      };
+    };
+  };
+
+  # PHP-FPM pool for Nextcloud
+  services.phpfpm.pools.nextcloud = {
+    user = "nextcloud";
+    group = "nextcloud";
+    phpPackage = pkgs.php83;
+    settings = {
+      "listen" = "/run/nextcloud-phpfpm/nextcloud.sock";
+      "listen.owner" = "nginx";
+      "listen.group" = "nginx";
+      "pm" = "dynamic";
+      "pm.max_children" = "32";
+      "pm.start_servers" = "2";
+      "pm.min_spare_servers" = "2";
+      "pm.max_spare_servers" = "4";
+    };
+  };
+
+  # Firewall
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-  # Enable nginx globally
-  services.nginx.enable = true;
 
 }
+
 
