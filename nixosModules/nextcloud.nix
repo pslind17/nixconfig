@@ -1,40 +1,30 @@
-{ config, pkgs, ... }:
+{{ config, pkgs, ... }:
 
 {
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud31;
+    package = pkgs.nextcloud29;
 
     datadir = "/var/lib/nextcloud";
     hostName = "cloud.example.com";
 
-    # Database
-    database.createLocally = true;
+    # Database (must be explicit)
+    database = {
+      createLocally = true;
+      type = "sqlite";  # alternatives: "mysql" or "sqlite"
+    };
 
-    # Redis
+    # Redis cache
     configureRedis = true;
 
-    # HTTPS handled by nginx + acme, not by Nextcloud itself
+    # HTTPS handled by nginx
     https = false;
   };
 
   services.nginx = {
     enable = true;
-    virtualHosts."cloud.example.com" = {
-      forceSSL = true;
-      enableACME = true;
-
-      locations."/" = {
-        proxyPass = "http://unix:/run/nextcloud-phpfpm/nextcloud.sock";
-        extraConfig = ''
-          client_max_body_size 512M;
-          fastcgi_buffers 64 4K;
-        '';
-      };
-    };
   };
 
-  # PHP-FPM pool for Nextcloud
   services.phpfpm.pools.nextcloud = {
     user = "nextcloud";
     group = "nextcloud";
@@ -51,10 +41,6 @@
     };
   };
 
-  # Firewall
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-
 }
-
-
