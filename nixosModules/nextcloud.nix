@@ -4,33 +4,30 @@
   services.nextcloud = {
     enable = true;
 
-    # Choose your desired Nextcloud release (e.g., 29, 28, etc.)
-    package = pkgs.nextcloud31;
+    # Pick your desired version
+    package = pkgs.nextcloud29;
 
-    # Data directory
     datadir = "/var/lib/nextcloud";
-
-    # Configure the host/domain name
     hostName = "cloud.example.com";
 
-    # Enable automatic database (uses PostgreSQL by default)
+    # Database
     database.createLocally = true;
 
-    # Enable built-in redis cache for better performance
+    # Caching
     configureRedis = true;
 
-    # Automatically configure nginx + php-fpm
-    configureNginx = true;
+    # This replaces the old configureNginx
+    nginx.enable = true;
 
-    # Optional: force HTTPS (make sure you configure certs below)
+    # Optional: force HTTPS (works with ACME)
     https = true;
   };
 
-  # Open firewall for HTTP/HTTPS
+  # Open firewall ports
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-  # Enable nginx (Nextcloud will add its own vhost config)
+  # Enable nginx globally
   services.nginx.enable = true;
 
-  }
+}
 
