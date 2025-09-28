@@ -10,6 +10,8 @@
 
     # Explicit DB type required since 25.05
     config.dbtype = "sqlite";
+    services.nextcloud.autoSetup = false;
+
   };
 
   # Open firewall for HTTP (Nextcloud will configure nginx itself)
