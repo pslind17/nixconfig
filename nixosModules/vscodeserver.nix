@@ -2,7 +2,7 @@
 
 {
   services.openvscode-server.enable = true;
-  services.openvscode-server.port = 80;
+  services.openvscode-server.port = 3000;
 
-  networking.firewall.allowedTCPPorts = [ 80 ];
+  networking.firewall.allowedTCPPorts = [ 3000 ];
 }
