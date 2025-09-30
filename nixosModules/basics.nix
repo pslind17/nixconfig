@@ -10,7 +10,6 @@
   	neofetch
     git
     tailscale
-    php
     ];
     
 

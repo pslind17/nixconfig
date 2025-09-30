@@ -1,6 +1,17 @@
 { config, pkgs, ... }:
 
 {
+
+  environment.systemPackages = with pkgs; [
+  php
+  phpPackages.sqlite
+  phpPackages.curl
+  phpPackages.mbstring
+  phpPackages.gd
+  phpPackages.intl
+  phpPackages.xml
+];
+
   services.nextcloud = {
     enable = true;
     package = pkgs.nextcloud30;
