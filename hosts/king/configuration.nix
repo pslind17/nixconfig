@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../nixosModules/basics.nix
-      ../../nixosModules/plasma.nix
+      ../../nixosModules/cosmic.nix
       ../../nixosModules/desktopapps.nix
       ../../nixosModules/rsynctoha.nix
     ];
