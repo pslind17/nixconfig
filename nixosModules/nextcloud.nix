@@ -1,48 +1,35 @@
-{ config, pkgs, ... }:
+{ self, config, lib, pkgs, ... }:
 
 {
-
-  environment.systemPackages = with pkgs; [
-  (php.withPackages (ps: with ps; [
-    mbstring
-    gd
-    intl
-    xml
-    curl
-    pdo_sqlite
-  ]))
-];
+  services = {
 
 
+    nextcloud = {
+      enable = true;
+      hostName = "next";
 
+       # Need to manually increment with every major upgrade.
+      package = pkgs.nextcloud31;
 
-  services.nextcloud = {
-    enable = true;
-    package = pkgs.nextcloud30;
-    hostName = "localhost";
-    https = false;
+      # Let NixOS install and configure the database automatically.
+      database.createLocally = true;
 
-    config = {
-      dbtype = "sqlite";   # simplest DB
-      adminuser = "admin"; # required
-      adminpassFile = "/var/lib/nextcloud/admin-pass"; # required
-    };
+      # Let NixOS install and configure Redis caching automatically.
+      configureRedis = true;
 
-    datadir = "/var/lib/nextcloud/data";
-  };
+      # Increase the maximum file upload size to avoid problems uploading videos.
+      maxUploadSize = "16G";
+      https = true;
+      enableBrokenCiphersForSSE = false;
 
-  services.nginx = {
-    enable = true;
-
-    virtualHosts."localhost" = {
-      forceSSL = false;
-      listen = [{
-        addr = "0.0.0.0";
-        port = 8123;
-        ssl = false;
-      }];
+      config = {
+        overwriteProtocol = "https";
+        defaultPhoneRegion = "PT";
+        dbtype = "pgsql";
+        adminuser = "admin";
+        adminpassFile = "/path/to/nextcloud-admin-pass";
+      };
     };
   };
-
-  networking.firewall.allowedTCPPorts = [ 8123 ];
 }
+
