@@ -19,9 +19,7 @@
       name = "nextcloud";
     };
 
-    # Auto create admin user on first start (set password in a file)
-    adminpassFile = "/var/lib/nextcloud/admin-pass";
-    adminuser = "admin";
+
   };
 
   # Enable PostgreSQL
