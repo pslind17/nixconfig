@@ -4,13 +4,15 @@
 
   environment.systemPackages = with pkgs; [
   php
-  phpPackages.sqlite3
   phpPackages.curl
   phpPackages.mbstring
   phpPackages.gd
   phpPackages.intl
   phpPackages.xml
+  phpPackages.pdo_sqlite
 ];
+
+
 
 
   services.nextcloud = {
