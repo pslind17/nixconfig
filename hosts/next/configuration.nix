@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../nixosModules/basics.nix
-      ../../nixosModules/nextcloud.nix
+      ../../nixosModules/vscodeserver.nix
     ];
 
   # Bootloader.
