@@ -26,7 +26,7 @@
         defaultPhoneRegion = "PT";
         dbtype = "pgsql";
         adminuser = "admin";
-        adminpassFile = "/path/to/nextcloud-admin-pass";
+        adminpassFile = "/var/lib/nextcloud/admin-pass";
       };
     };
   };
