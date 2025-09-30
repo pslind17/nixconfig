@@ -12,6 +12,8 @@
       adminuser = "admin"; # required
       adminpassFile = "/var/lib/nextcloud/admin-pass"; # required
     };
+
+    datadir = "/var/lib/nextcloud/data";
   };
 
   services.nginx = {
