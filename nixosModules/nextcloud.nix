@@ -1,28 +1,24 @@
 { config, pkgs, ... }:
 
 {
-  # Enable Nextcloud
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud29; # optional: choose specific version
-    hostName = "localhost";     # required even if https = false
+    package = pkgs.nextcloud29; # or omit for default
+    hostName = "localhost";
     https = false;
 
-    # Nextcloud database config
     config = {
       dbtype = "pgsql";
       dbuser = "nextcloud";
-      dbpasswordFile = "/var/lib/nextcloud/db-pass";
+      dbpass = "super-strong-db-password"; # must be plain string
       dbname = "nextcloud";
     };
 
-    # Force it to listen on port 8123, plain HTTP
     nginx.listen = [
       { addr = "0.0.0.0"; port = 8123; ssl = false; }
     ];
   };
 
-  # Enable PostgreSQL and set up a DB + user for Nextcloud
   services.postgresql = {
     enable = true;
     ensureDatabases = [ "nextcloud" ];
@@ -30,10 +26,11 @@
       {
         name = "nextcloud";
         ensureDBOwnership = true;
+        # This sets the same password as above
+        password = "super-strong-db-password";
       }
     ];
   };
 
-  # Open firewall port
   networking.firewall.allowedTCPPorts = [ 8123 ];
 }
