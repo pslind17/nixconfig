@@ -9,5 +9,6 @@ services.nextcloud = {
   config.adminpassFile = "/etc/nextcloud-admin-pass";
   config.dbtype = "sqlite";
 };
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 }
 
