@@ -3,11 +3,15 @@
 {
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud30; # ✅ upgrade here
+    package = pkgs.nextcloud30;
     hostName = "localhost";
     https = false;
 
-    config.dbtype = "sqlite"; # simplest option
+    config = {
+      dbtype = "sqlite";   # simplest DB
+      adminuser = "admin"; # required
+      adminpassFile = "/var/lib/nextcloud/admin-pass"; # required
+    };
   };
 
   services.nginx = {
