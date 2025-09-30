@@ -3,11 +3,11 @@
 {
   services.nextcloud = {
     enable = true;
-    package = pkgs.nextcloud29; # or omit
+    package = pkgs.nextcloud30; # ✅ upgrade here
     hostName = "localhost";
     https = false;
 
-    config.dbtype = "sqlite"; # simplest (no PostgreSQL service needed)
+    config.dbtype = "sqlite"; # simplest option
   };
 
   services.nginx = {
