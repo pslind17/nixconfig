@@ -5,7 +5,7 @@
     enable = true;
 
     # Which version of Nextcloud you want (omit for latest available)
-    package = pkgs.nextcloud29;
+    package = pkgs.nextcloud31;
 
     hostName = "localhost";  # ignored if no SSL, but required
     https = false;           # disable SSL, plain HTTP only
