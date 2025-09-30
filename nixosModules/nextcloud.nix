@@ -3,13 +3,14 @@
 {
 
   environment.systemPackages = with pkgs; [
-  php
-  phpPackages.curl
-  phpPackages.mbstring
-  phpPackages.gd
-  phpPackages.intl
-  phpPackages.xml
-  phpPackages.pdo_sqlite
+  (php.withPackages (ps: with ps; [
+    mbstring
+    gd
+    intl
+    xml
+    curl
+    pdo_sqlite
+  ]))
 ];
 
 
