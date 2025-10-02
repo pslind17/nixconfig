@@ -17,6 +17,7 @@
     openrocket
     orca-slicer
     popsicle
+    python3
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
