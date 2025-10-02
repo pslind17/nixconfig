@@ -13,12 +13,10 @@
     vlc
     distrobox
     f3d
-    arduino
+    arduino-ide
     openrocket
     orca-slicer
     popsicle
-    deja-dup
-    cider
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
