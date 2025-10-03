@@ -18,6 +18,7 @@
     orca-slicer
     popsicle
     python3
+    python3Packages.pyserial
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
