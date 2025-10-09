@@ -19,6 +19,7 @@
     popsicle
     python3
     python3Packages.pyserial
+    kicad
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
