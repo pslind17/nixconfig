@@ -10,7 +10,6 @@
       ./hardware-configuration.nix
       ../../nixosModules/basics.nix
       ../../nixosModules/vscodeserver.nix
-      ../../nixosModules/nextcloud.nix
     ];
 
   # Bootloader.
