@@ -20,6 +20,7 @@
     python3
     python3Packages.pyserial
     kicad
+    thunderbird
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
