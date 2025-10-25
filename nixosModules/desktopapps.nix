@@ -13,12 +13,11 @@
     vlc
     distrobox
     f3d
-    arduino-ide
+    arduino
     openrocket
     orca-slicer
     popsicle
     python3
-    python3Packages.pyserial
     kicad
     thunderbird
   ];
