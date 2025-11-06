@@ -2,5 +2,5 @@
 
 {
     services.vaultwarden.enable = true;
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    networking.firewall.allowedTCPPorts = [ 8000 443 ];
 }
