@@ -12,5 +12,5 @@
     '';
   };
 
-  networking.firewall.allowedTCPPorts = lib.mkForce (config.networking.firewall.allowedTCPPorts or []) ++ [ 8000 ];
+  networking.firewall.allowedTCPPorts = lib.mkForce ((config.networking.firewall.allowedTCPPorts or []) ++ [ 8000 ]);
 }
