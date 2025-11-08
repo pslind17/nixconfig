@@ -11,7 +11,7 @@
       enable = true;
       hostName = "next";
       # Need to manually increment with every major upgrade.
-      package = pkgs.nextcloud32;
+      package = pkgs.nextcloud31;
       # Let NixOS install and configure the database automatically.
       database.createLocally = true;
       # Let NixOS install and configure Redis caching automatically.
