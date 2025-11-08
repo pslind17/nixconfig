@@ -3,7 +3,7 @@
   services = {
     nginx.virtualHosts = {
       "next" = {
-        forceSSL = true;
+        forceSSL = false;
       };
     };
     # 
