@@ -1,36 +1,25 @@
 { self, config, lib, pkgs, ... }: {
-  # Based on https://carjorvaz.com/posts/the-holy-grail-nextcloud-setup-made-easy-by-nixos/
   services = {
-    nginx.virtualHosts = {
-      "next" = {
-        forceSSL = false;
-      };
+    nginx = {
+      enable = true;            # ensure nginx is enabled
     };
-    # 
+
     nextcloud = {
       enable = true;
       hostName = "next";
-      # Need to manually increment with every major upgrade.
       package = pkgs.nextcloud31;
-      # Let NixOS install and configure the database automatically.
       database.createLocally = true;
-      # Let NixOS install and configure Redis caching automatically.
       configureRedis = true;
-      # Increase the maximum file upload size.
       maxUploadSize = "16G";
-      https = true;
-      autoUpdateApps.enable = true;
-      extraAppsEnable = true;
+      https = false;            # set false for testing, enable when certs are configured
       settings = {
-        overwriteProtocol = "https";
+        overwriteProtocol = "http";
         default_phone_region = "US";
       };
       config = {
         dbtype = "pgsql";
-        adminuser = "admin";
-        adminpassFile = "/home/pslind/adminpass";
+        # remove adminuser/adminpassFile - use occ to set admin
       };
-      # Suggested by Nextcloud's health check.
       phpOptions."opcache.interned_strings_buffer" = "16";
     };
   };
