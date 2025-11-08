@@ -18,7 +18,7 @@
       };
       config = {
         dbtype = "pgsql";
-        # remove adminuser/adminpassFile - use occ to set admin
+        adminpassFile = "/home/pslind/adminpass";
       };
       phpOptions."opcache.interned_strings_buffer" = "16";
     };
