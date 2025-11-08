@@ -18,6 +18,7 @@
       };
       config = {
         dbtype = "pgsql";
+        adminuser = "admin";
         adminpassFile = "/home/pslind/adminpass";
       };
       phpOptions."opcache.interned_strings_buffer" = "16";
