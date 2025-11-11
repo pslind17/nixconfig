@@ -1,28 +1,44 @@
-{ self, config, lib, pkgs, ... }: {
+{ self, config, lib, pkgs, ... }:
+
+{
+  users.users.pslind.createHome = true;
+  users.users.pslind.homeMode = "750";
+
   services = {
-    nginx = {
-      enable = true;            # ensure nginx is enabled
+    nginx.virtualHosts = {
+      "next" = {
+      };
     };
 
     nextcloud = {
       enable = true;
       hostName = "next";
+
+       # Need to manually increment with every major upgrade.
       package = pkgs.nextcloud31;
+
+      # Let NixOS install and configure the database automatically.
       database.createLocally = true;
+
+      # Let NixOS install and configure Redis caching automatically.
       configureRedis = true;
+
+      # Increase the maximum file upload size to avoid problems uploading videos.
       maxUploadSize = "16G";
-      https = false;            # set false for testing, enable when certs are configured
+      https = true;
+
       settings = {
         overwriteProtocol = "http";
-        default_phone_region = "US";
+        defaultPhoneRegion = "PT";
       };
+
       config = {
         dbtype = "pgsql";
-        adminuser = "admin";
-        adminpassFile = "/home/pslind/adminpass";
+        adminuser = "pslind";
+        adminpassFile = "/var/lib/nextcloud/nextcloud.pass";
       };
-      phpOptions."opcache.interned_strings_buffer" = "16";
     };
   };
 }
+
 
