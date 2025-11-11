@@ -3,6 +3,7 @@
 {
   users.users.pslind.createHome = true;
   users.users.pslind.homeMode = "750";
+  networking.firewall.allowedTCPPorts = [ 8000 80 443 ];
 
   services = {
     nginx.virtualHosts = {
