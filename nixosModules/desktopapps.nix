@@ -20,7 +20,7 @@
     python3
     kicad
     thunderbird
-    davinci-resolve
+    sunshine
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
