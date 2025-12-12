@@ -11,6 +11,7 @@
       ../../nixosModules/basics.nix
       ../../nixosModules/plasma.nix
       ../../nixosModules/desktopapps.nix
+      ../../nixosModules/sunshine.nix
     ];
 
   # Bootloader.
