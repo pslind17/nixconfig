@@ -21,6 +21,9 @@
     kicad
     thunderbird
     sunshine
+    openshot-qt
+    shotcut
+    kdePackages.kdenlive
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
