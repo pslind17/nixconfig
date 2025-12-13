@@ -21,8 +21,6 @@
     kicad
     thunderbird
     sunshine
-    openshot-qt
-    shotcut
     kdePackages.kdenlive
   ];
 
