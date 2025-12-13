@@ -7,6 +7,18 @@ security.wrappers.sunshine = {
       source = "${pkgs.sunshine}/bin/sunshine";
   };
 
+hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      vaapiIntel
+      libvdpau-va-gl
+    ];
+  };
+
+services.seatd.enable = true;
+security.polkit.enable = true;
+
 services.avahi.publish.enable = true;
 services.avahi.publish.userServices = true;
 
