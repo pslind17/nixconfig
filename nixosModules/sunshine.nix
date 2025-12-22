@@ -19,6 +19,8 @@ hardware.graphics = {
 services.seatd.enable = true;
 security.polkit.enable = true;
 
+boot.kernelModules = [ "uinput" ];
+
 services.avahi.publish.enable = true;
 services.avahi.publish.userServices = true;
 
