@@ -1,72 +1,53 @@
-{ config, pkgs, lib, ... }:
+# /etc/nixos/configuration.nix
+{ config, pkgs, ... }:
 
 let
-  # secrets (you might store these outside of version control)
-  adminPass = "YOUR_ADMIN_PASSWORD_32+_CHARS";  # change this
-  secretsFile = "/etc/nextcloud-secrets.json";
+  nextcloudVersion = pkgs.nextcloud32; # change if you want another supported version
 in
 {
-  # Write the secrets file (or use a secrets management solution)
-  environment.etc."nextcloud-secrets.json".text = lib.mkIndent 2 ''
-    {
-      "passwordsalt": "SOME_RANDOM_STRING",
-      "secret": "SOME_RANDOM_STRING_2",
-      "instanceid": "INST_ID_RANDOM",
-      "redis": {
-        "password": "REDIS_PASSWORD"
-      }
-    }
-  '';
+  imports = [];
+
+  # Nextcloud admin password stored in a file
+  environment.etc."nextcloud-admin-pass".text = "MyAdminPassword123!";
 
   services.nextcloud = {
     enable = true;
 
-    # Package version — pick the version in nixpkgs (update as needed)
-    package = pkgs.nextcloud;  # you can pin nextcloud31, nextcloud32 etc
+    # Use the chosen Nextcloud version package
+    package = nextcloud32;
 
-    # Host name (since only internal via tailscale you might set a local hostname)
-    hostName = "nextcloud.internal";  # or whatever your machine's Tailscale name
+    # Basic hostname: use a placeholder or your Tailscale Magic DNS name
+    hostName = "nextcloud.local";
 
-    # No HTTPS because only accessible via Tailscale private network
-    https = false;
-
-    # Admin setup
-    config.adminuser = "admin";
-    config.adminpassFile = null;  # we provide admin via environment below
-    environment.etc."nextcloud-admin-pass".text = adminPass;
+    # Point at file with admin password
     config.adminpassFile = "/etc/nextcloud-admin-pass";
 
-    # Use a database: you may use sqlite for simplicity; or install postgres/mysql
+    # SQLite for minimal setup
     config.dbtype = "sqlite";
-    # If you choose postgres, do something like:
-    # database.createLocally = true;
-    # config.dbtype = "pgsql";
 
-    # Overwrite protocol and host (important for internal only)
-    config.overwriteprotocol = "http";
-    config.overwritehost = config.services.nextcloud.hostName;
-    config.overwritewebroot = "/";
-    config["overwrite.cli.url"] = "http://${config.services.nextcloud.hostName}/";
+    # Since we’re behind Tailscale (TLS via Tailscale Serve), do NOT enable the module’s HTTPS
+    https = false;
 
-    # upload size, etc
-    maxUploadSize = "4G";
-
-    # Optional: enable a caching backend
-    configureRedis = false;  # set true if you install redis
+    # If clients access via HTTPS via a proxy (Tailscale Serve),
+    # ensure correct protocol used in links if needed
+    settings = {
+      overwriteprotocol = "https";
+    };
   };
 
-  # If you want caching (optional)
-  # services.redis = {
-  #   enable = true;
-  #   password = "REDIS_PASSWORD";
-  # };
+  # Nginx is auto-configured by the Nextcloud module unless overridden.
+  # Adjust ports if Tailscale Serve expects a specific port.
 
-  # Storage: ensure persistent data
-  fileSystems."/var/lib/nextcloud" = {
-    device = "/mnt/nextcloud-data";  # your storage device
-    fsType = "ext4";  # or whatever
-  };
+  # Optional: allow HTTP only access internally (if using Tailscale Serve HTTP)
+  networking.firewall.allowedTCPPorts = [ 80 ];
+
+  # You might prefer to bind Nginx to localhost only, since Tailscale Serve
+  # forwards traffic over localhost:
+  networking.interfaces.lo.extraConfig = ''
+    # no extra settings; placeholder if customizing later
+  '';
 }
+
 
 
 
