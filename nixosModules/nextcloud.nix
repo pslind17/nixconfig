@@ -7,7 +7,7 @@
     database.createLocally = true;
     config = {
       dbtype = "pgsql";
-      adminpassFile = "./admin-pass-file";
+      adminpassFile = "/home/pslind/nixconfig/nixosModules/admin-pass-file";
     };
   };
 
