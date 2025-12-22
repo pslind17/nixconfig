@@ -60,12 +60,12 @@ nixosConfigurations = {
    };
   };
 
-nixosConfigurations = {
- rpi = nixpkgs.lib.nixosSystem {
-   specialArgs = { system = "aarch64-linux"; };
+  nixosConfigurations = {
+ iso = nixpkgs.lib.nixosSystem {
+   specialArgs = { inherit system; };
 
    modules = [
-   ./hosts/rpi/configuration.nix
+   ./hosts/iso/configuration.nix
    ];
    };
   };
