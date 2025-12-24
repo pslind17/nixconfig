@@ -22,6 +22,7 @@
     thunderbird
     sunshine
     kdePackages.kdenlive
+    deskreen
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
