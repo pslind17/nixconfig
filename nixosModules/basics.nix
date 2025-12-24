@@ -11,6 +11,10 @@
     git
     tailscale
     ];
+
+    boot.kernelModules = [ "xhci_pci" "usb_storage" "uas" ];
+    boot.initrd.availableKernelModules = [ "xhci_pci" "usbcore" "usb_storage" "uas" ];
+
     
 
     networking.networkmanager.enable = true;
