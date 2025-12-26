@@ -23,6 +23,7 @@
     sunshine
     kdePackages.kdenlive
     deskreen
+    solaar
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
