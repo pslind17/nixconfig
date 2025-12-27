@@ -22,7 +22,6 @@
     thunderbird
     sunshine
     kdePackages.kdenlive
-    ugs
     lightburn
   ];
 
