@@ -23,7 +23,6 @@
     sunshine
     kdePackages.kdenlive
     lightburn
-    (callPackage /home/pslind/pkgs/ugs/default.nix {})
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
