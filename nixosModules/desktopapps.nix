@@ -23,6 +23,7 @@
     sunshine
     kdePackages.kdenlive
     ugs
+    lightburn
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
