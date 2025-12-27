@@ -28,7 +28,7 @@
     users.users.pslind = {
     isNormalUser = true;
     description = "Peyton Slind";
-    extraGroups = [ "networkmanager" "wheel" "docker" "cdrom"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "cdrom" "dialout" "plugdev" ];
     packages = with pkgs; [
       firefox
     #  thunderbird
