@@ -12,6 +12,7 @@
       ../../nixosModules/plasma.nix
       ../../nixosModules/desktopapps.nix
       ../../nixosModules/sunshine.nix
+      ../../nixosModules/waydroid.nix
     ];
 
   # Bootloader.
