@@ -23,6 +23,7 @@
     sunshine
     kdePackages.kdenlive
     lightburn
+    inkscape
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
