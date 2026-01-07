@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   services.nextcloud = {
-    package = pkgs.nextcloud31;
+    package = pkgs.nextcloud32;
     enable = true;
     hostName = "next";
     database.createLocally = true;
