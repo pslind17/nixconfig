@@ -4,7 +4,6 @@
     package = pkgs.nextcloud32;
     enable = true;
     hostName = "next";
-    https = true;
     database.createLocally = true;
     config = {
       dbtype = "pgsql";
