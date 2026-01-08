@@ -17,18 +17,23 @@
       dbtype = "pgsql";
       adminpassFile = "/home/pslind/nixconfig/nixosModules/admin-pass-file";
     };
+  };
 
-    # Tell Nextcloud/nginx where the self-signed cert is
-    nginx = {
+  ############################
+  # Nginx (Nextcloud manages the vhost)
+  ############################
+  services.nginx = {
+    enable = true;
+
+    # Inject SSL into the auto-generated Nextcloud vhost
+    virtualHosts."next" = {
+      forceSSL = true;
+      enableACME = false;
+
       sslCertificate = "/var/lib/nginx/next.crt";
       sslCertificateKey = "/var/lib/nginx/next.key";
     };
   };
-
-  ############################
-  # Nginx (required by Nextcloud)
-  ############################
-  services.nginx.enable = true;
 
   ############################
   # Firewall
@@ -37,4 +42,3 @@
     443
   ];
 }
-
