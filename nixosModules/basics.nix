@@ -7,7 +7,7 @@
 
     # Packages needed on all machines
     environment.systemPackages = with pkgs; [
-  	neofetch
+  	fastfetch
     git
     tailscale
     ];
