@@ -1,33 +1,40 @@
 { pkgs, ... }:
+
 {
-  services.nginx = {
-  enable = true;
-
-  virtualHosts."next" = {
-    forceSSL = true;
-    enableACME = false;
-
-    sslCertificate = "/var/lib/nginx/next.crt";
-    sslCertificateKey = "/var/lib/nginx/next.key";
-  };
-};
-
+  ############################
+  # Nextcloud
+  ############################
   services.nextcloud = {
-    package = pkgs.nextcloud32;
     enable = true;
+    package = pkgs.nextcloud32;
+
+    hostName = "next";
     https = true;
-    hostName = "next.tail26b773.ts.net";
+
     database.createLocally = true;
+
     config = {
       dbtype = "pgsql";
       adminpassFile = "/home/pslind/nixconfig/nixosModules/admin-pass-file";
     };
+
+    # Tell Nextcloud/nginx where the self-signed cert is
+    nginx = {
+      sslCertificate = "/var/lib/nginx/next.crt";
+      sslCertificateKey = "/var/lib/nginx/next.key";
+    };
   };
 
+  ############################
+  # Nginx (required by Nextcloud)
+  ############################
+  services.nginx.enable = true;
+
+  ############################
+  # Firewall
+  ############################
   networking.firewall.allowedTCPPorts = [
-    80
     443
   ];
 }
-
 
