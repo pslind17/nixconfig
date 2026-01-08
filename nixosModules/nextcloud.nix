@@ -3,7 +3,7 @@
   services.nextcloud = {
     package = pkgs.nextcloud32;
     enable = true;
-    hostName = "next.tail26b773.ts.net";
+    hostName = "next";
     database.createLocally = true;
     config = {
       dbtype = "pgsql";
