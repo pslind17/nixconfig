@@ -24,7 +24,6 @@
     kdePackages.kdenlive
     lightburn
     inkscape
-    nextcloud-client
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
