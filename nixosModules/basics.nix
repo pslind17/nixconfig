@@ -10,6 +10,7 @@
   	fastfetch
     git
     tailscale
+    openssl
     ];
 
     boot.kernelModules = [ "xhci_pci" "usb_storage" "uas" ];

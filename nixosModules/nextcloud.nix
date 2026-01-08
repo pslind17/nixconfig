@@ -1,5 +1,17 @@
 { pkgs, ... }:
 {
+  services.nginx = {
+  enable = true;
+
+  virtualHosts."next" = {
+    forceSSL = true;
+    enableACME = false;
+
+    sslCertificate = "/var/lib/nginx/next.crt";
+    sslCertificateKey = "/var/lib/nginx/next.key";
+  };
+};
+
   services.nextcloud = {
     package = pkgs.nextcloud32;
     enable = true;
