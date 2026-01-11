@@ -12,7 +12,7 @@
       ROCKET_PORT = 8222;
 
       WEBSOCKET_ENABLED = true;
-      SIGNUPS_ALLOWED = false;
+      SIGNUPS_ALLOWED = true;
     };
   };
 
