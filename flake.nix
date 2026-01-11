@@ -60,6 +60,17 @@ nixosConfigurations = {
    };
   };
 
+nixosConfigurations = {
+ squire = nixpkgs.lib.nixosSystem {
+   specialArgs = { inherit system; };
+
+   modules = [
+   ./hosts/next/configuration.nix
+   ];
+   };
+  };
+
+
   nixosConfigurations = {
  iso = nixpkgs.lib.nixosSystem {
    specialArgs = { inherit system; };
