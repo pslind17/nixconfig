@@ -11,6 +11,7 @@
     git
     tailscale
     openssl
+    lm-sensors # Configure with "sudo sensors-detect", and use "sensors" to view
     ];
 
     boot.kernelModules = [ "xhci_pci" "usb_storage" "uas" ];
