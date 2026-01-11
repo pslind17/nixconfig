@@ -65,7 +65,7 @@ nixosConfigurations = {
    specialArgs = { inherit system; };
 
    modules = [
-   ./hosts/next/configuration.nix
+   ./hosts/squire/configuration.nix
    ];
    };
   };

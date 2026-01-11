@@ -22,7 +22,7 @@
      device = "nodev";
     };
   };
-  networking.hostName = "next"; # Define your hostname.
+  networking.hostName = "squire"; # Define your hostname.
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
