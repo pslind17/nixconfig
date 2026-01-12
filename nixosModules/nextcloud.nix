@@ -9,10 +9,15 @@
       dbtype = "pgsql";
       adminpassFile = "/home/pslind/nixconfig/nixosModules/admin-pass-file";
     };
+
+  extraApps = {
+    inherit (config.services.nextcloud.package.packages.apps) calendar tasks notes;
+  extraAppsEnable = true;
   };
 
   networking.firewall.allowedTCPPorts = [
     80
     443
   ];
+}
 }
