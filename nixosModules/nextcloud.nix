@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   services.nextcloud = {
     package = pkgs.nextcloud32;
@@ -11,12 +11,7 @@
     };
 
     extraApps = {
-    inherit (config.services.nextcloud.package.packages.apps) news contacts calendar tasks;
-    notes = pkgs.fetchNextcloudApp {
-        sha256 = "sha256-Xr1SRSmXo2r8yOGuoMyoXhD0oPVm/0/ISHlmNZpJYsg=";
-        url = "https://github.com/nextcloud-releases/notes/releases/download/v4.12.4/notes-v4.12.4.tar.gz";
-        license = "agpl3";
-    };
+    inherit (config.services.nextcloud.package.packages.apps) news contacts calendar tasks notes;
     extraAppsEnable = true;
 
   };
