@@ -25,6 +25,8 @@
     lightburn
     inkscape
     nextcloud-client
+    bitwarden-desktop
+    bitwarden-cli
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
