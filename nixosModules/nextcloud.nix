@@ -9,7 +9,7 @@
 
     config = {
       dbtype = "pgsql";
-      adminpassFile = "/home/pslind/nixconfig/nixosModules/admin-pass-file";
+      adminpassFile = "/home/pslind/admin-pass-file";
     };
 
     extraAppsEnable = true;
