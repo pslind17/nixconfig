@@ -13,4 +13,9 @@
   monthly = 3;
 };
 
+environment.systemPackages = [
+  pkgs.borgbackup
+];
+
+
 }
