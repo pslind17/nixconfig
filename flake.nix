@@ -70,6 +70,15 @@ nixosConfigurations = {
    };
   };
 
+nixosConfigurations = {
+ advisor = nixpkgs.lib.nixosSystem {
+   specialArgs = { inherit system; };
+
+   modules = [
+   ./hosts/advisor/configuration.nix
+   ];
+   };
+  };
 
   nixosConfigurations = {
  iso = nixpkgs.lib.nixosSystem {
