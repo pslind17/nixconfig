@@ -2,5 +2,5 @@
   boot.supportedFilesystems = [ "zfs" ];
   services.zfs.autoScrub.enable = true;
 
-  networking.hostId = "deadbeef"; # 8 hex chars
+  networking.hostId = "54a31bce"; # 8 hex chars
 }
