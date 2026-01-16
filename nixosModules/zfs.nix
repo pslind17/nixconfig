@@ -21,7 +21,7 @@ users.users.backup = {
   isSystemUser = true;
   home = "/home/backup";
   createHome = true;
-  shell = pkgs.shadow.nologin;  # or pkgs.shadow.nologin (see below)
+  shell = pkgs.bash;  # or pkgs.shadow.nologin (see below)
   group = "users";
 };
 
