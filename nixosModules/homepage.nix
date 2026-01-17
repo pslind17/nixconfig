@@ -8,11 +8,11 @@
       listen = [
         {
           addr = "0.0.0.0";
-          port = 8080;
+          port = 8067;
         }
       ];
 
-      root = "/var/www/homepage";
+      root = "/pslind/home/homepage";
 
       locations."/" = {
         index = "index.html";
@@ -21,5 +21,5 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 8080 ];
+  networking.firewall.allowedTCPPorts = [ 8067 ];
 }
