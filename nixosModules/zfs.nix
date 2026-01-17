@@ -16,4 +16,13 @@ services.zfs.autoSnapshot = {
   monthly = 3;
 };
 
+users.users.borg = {
+  isSystemUser = true;
+  group = "borg";
+  home = "/var/lib/borg";
+  createHome = true;
+  shell = pkgs.bash;
+};
+
+users.groups.borg = {};
 }
