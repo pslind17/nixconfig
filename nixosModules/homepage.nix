@@ -13,9 +13,9 @@
       ];
 
       root = "/home/pslind/homepage";
-      index = "index.html";
 
       locations."/" = {
+        index = [ "index.html" ];
         tryFiles = "$uri $uri/ =404";
       };
     };
