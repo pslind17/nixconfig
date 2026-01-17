@@ -10,7 +10,6 @@
       ./hardware-configuration.nix
       ../../nixosModules/basics.nix
       ../../nixosModules/nextcloud.nix
-      ../../nixosModules/clientsidebackupnext.nix
       ../../nixosModules/nextcloudbackupservice.nix
     ];
 
