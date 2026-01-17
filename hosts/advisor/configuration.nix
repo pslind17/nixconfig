@@ -9,14 +9,19 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../nixosModules/basics.nix
-      ../../nixosModules/zfs.nix
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-
+  #boot.loader.systemd-boot.enable = true;
+  #boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    grub = {
+      enable = true;
+      efiSupport = true;
+      device = "nodev";
+    };
+    efi.canTouchEfiVariables = true;
+  };
   networking.hostName = "advisor"; # Define your hostname.
 
 
