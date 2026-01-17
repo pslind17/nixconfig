@@ -11,6 +11,7 @@
       ../../nixosModules/basics.nix
       ../../nixosModules/vaultwarden.nix
       ../../nixosModules/vaultwardenbackupservice.nix
+      ../../nixosModules/kuma.nix
     ];
 
   # Bootloader.
