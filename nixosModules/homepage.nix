@@ -12,7 +12,7 @@
         }
       ];
 
-      root = "/pslind/home/homepage";
+      root = "/home/pslind/homepage";
 
       locations."/" = {
         index = "index.html";
