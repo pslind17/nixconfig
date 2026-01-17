@@ -11,6 +11,7 @@
       ../../nixosModules/basics.nix
       ../../nixosModules/nextcloud.nix
       ../../nixosModules/clientsidebackupnext.nix
+      ../../nixosModules/borgnextcloudside.nix
     ];
 
   # Bootloader.
