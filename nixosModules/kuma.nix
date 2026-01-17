@@ -4,10 +4,11 @@
   services.uptime-kuma = {
     enable = true;
     settings = {
-      HOST = "squire";
+      HOST = "0.0.0.0";
       PORT = "3001";
     };
   };
 
   networking.firewall.allowedTCPPorts = [ 3001 ];
 }
+
