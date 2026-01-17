@@ -8,18 +8,18 @@
       listen = [
         {
           addr = "0.0.0.0";
-          port = 8067;
+          port = 8080;
         }
       ];
 
-      root = "/home/pslind/homepage";
+      root = "/var/www/homepage";
 
       locations."/" = {
-        index = [ "index.html" ];
+        index = "index.html";
         tryFiles = "$uri $uri/ =404";
       };
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 8067 ];
+  networking.firewall.allowedTCPPorts = [ 8080 ];
 }
