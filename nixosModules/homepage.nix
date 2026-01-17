@@ -12,7 +12,7 @@
         }
       ];
 
-      root = "/home/pslind/homepage";
+      root = "/var/www/homepage";
 
       locations."/" = {
         index = "index.html";
