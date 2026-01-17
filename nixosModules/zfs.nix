@@ -25,4 +25,9 @@ users.users.borg = {
 };
 
 users.groups.borg = {};
+
+environment.systemPackages = with pkgs; [
+  borgbackup
+];
+
 }
