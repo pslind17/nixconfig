@@ -5,7 +5,17 @@
 
   services.guacamole-client = {
     enable = true;
-    userMappingXml = ./user-mapping.xml;
+    userMappingXml = pkgs.writeText "user-mapping.xml" ''
+    <user-mapping>
+      <authorize username="admin" password="password">
+        <connection name="Local SSH">
+          <protocol>ssh</protocol>
+          <param name="hostname">127.0.0.1</param>
+          <param name="port">22</param>
+        </connection>
+      </authorize>
+    </user-mapping>
+  '';
   };
 
   services.nginx = {
