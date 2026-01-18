@@ -5,4 +5,5 @@
        port = 4822;
        userMappingXml = ./user-mapping.xml;
    };
+   networking.firewall.allowedTCPPorts = [ 4822 ];
 }
