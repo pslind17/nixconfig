@@ -2,7 +2,7 @@
 
 {
 environment.systemPackages = with pkgs; [
-  opendeck
+  stream-pi-server
 ];
 
 
