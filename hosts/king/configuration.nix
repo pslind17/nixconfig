@@ -13,7 +13,6 @@
       ../../nixosModules/desktopapps.nix
       ../../nixosModules/sunshine.nix
       ../../nixosModules/waydroid.nix
-      ../../nixosModules/macrodeck.nix
     ];
 
   # Bootloader.
