@@ -1,12 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    macrodeck
-  ];
+environment.systemPackages = with pkgs; [
+  opendeck
+];
+
 
   networking.firewall.allowedTCPPorts = [
-    8190  # device connection
-    8191  # web client
+    9000
   ];
 }
