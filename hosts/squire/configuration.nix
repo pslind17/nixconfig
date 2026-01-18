@@ -13,6 +13,7 @@
       ../../nixosModules/vaultwardenbackupservice.nix
       ../../nixosModules/kuma.nix
       ../../nixosModules/homepage.nix
+      ../../nixosModules/guacamole.nix
     ];
 
   # Bootloader.
