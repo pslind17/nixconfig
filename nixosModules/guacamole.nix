@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
        services.guacamole-server = {
        enable = true;
-       host = "127.0.0.1";
+       host = "0.0.0.0";
        port = 4822;
        userMappingXml = ./user-mapping.xml;
    };
