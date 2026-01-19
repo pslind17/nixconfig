@@ -1,10 +1,6 @@
-{ pkgs, lib, config, ... }: {
-    services.borgbackup.jobs.nextcloud = {
+services.borgbackup.jobs.nextcloud = {
   paths = [ "/var/lib/nextcloud" ];
-
   repo = "borg@advisor:/srv/nextcloud/borg";
-
-  compression = "zstd";
   startAt = "daily";
 
   encryption = {
@@ -18,4 +14,3 @@
     monthly = 3;
   };
 };
-}

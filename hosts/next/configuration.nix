@@ -11,6 +11,7 @@
       ../../nixosModules/basics.nix
       ../../nixosModules/nextcloud.nix
       ../../nixosModules/nextcloudbackupservice.nix
+      ../../nixosModules/guacamole.nix
     ];
 
   # Bootloader.
