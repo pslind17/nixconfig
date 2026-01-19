@@ -1,6 +1,14 @@
+{ config, pkgs, ... }:
+
+{
+
 services.borgbackup.jobs.nextcloud = {
   paths = [ "/var/lib/nextcloud" ];
+
   repo = "borg@advisor:/srv/nextcloud/borg";
+
+  compression = "zstd";
+
   startAt = "daily";
 
   encryption = {
@@ -13,4 +21,8 @@ services.borgbackup.jobs.nextcloud = {
     weekly = 4;
     monthly = 3;
   };
+
+  # 🔴 THIS is what you are missing
+  doInit = false;
 };
+}
