@@ -13,7 +13,6 @@
     openssl
     lm_sensors # Configure with "sudo sensors-detect" and use "sensors" to view
     borgbackup
-    atuin
     ];
 
     boot.kernelModules = [ "xhci_pci" "usb_storage" "uas" ];
