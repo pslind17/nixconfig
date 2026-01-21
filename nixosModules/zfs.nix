@@ -7,6 +7,8 @@ services.zfs = {
   autoScrub.enable = true;
 };
 
+boot.zfs.extraPools = [ "tank" ];
+
 services.zfs.autoSnapshot = {
   enable = true;
   frequent = 4;
