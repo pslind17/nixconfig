@@ -14,7 +14,7 @@
 
   users.groups.input = {};
 
-  users.users.yourUsername = {
+  users.users.pslind = {
     isNormalUser = true;
     extraGroups = [
       "input"
