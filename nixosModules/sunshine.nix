@@ -2,21 +2,13 @@
 
 {
   #### Sunshine ####
-  environment.systemPackages = [
-    pkgs.sunshine
-  ];
-
-  security.wrappers.sunshine = {
-    owner = "root";
-    group = "root";
-    source = "${pkgs.sunshine}/bin/sunshine";
-    capabilities = [
-      "cap_setpcap+ep"
-      "cap_sys_nice+ep"
-    ];
+  services.sunshine = {
+    enable = true;
+    openFirewall = false;
+    capSysAdmin = true;
   };
 
-  #### Graphics (Intel iGPU / VAAPI) ####
+  #### Graphics (Intel VAAPI) ####
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
@@ -26,31 +18,27 @@
     ];
   };
 
-  #### Input emulation (THIS FIXES PERMISSION DENIED) ####
-  boot.kernelModules = [
-    "uinput"
-    "uhid"
-  ];
+  #### Input emulation ####
+  boot.kernelModules = [ "uinput" "uhid" ];
 
   services.udev.extraRules = ''
     KERNEL=="uinput", MODE="0660", GROUP="input"
     KERNEL=="uhid", MODE="0660", GROUP="input"
+    KERNEL=="event*", SUBSYSTEM=="input", MODE="0660", GROUP="input"
   '';
 
-  #### Seat / Polkit (required for Wayland input) ####
+  #### Seat / Wayland ####
   services.seatd.enable = true;
   security.polkit.enable = true;
 
-  #### Avahi discovery (Moonlight auto-discovery) ####
+  #### Avahi ####
   services.avahi = {
     enable = true;
-    publish = {
-      enable = true;
-      userServices = true;
-    };
+    publish.enable = true;
+    publish.userServices = true;
   };
 
-  #### Firewall (Sunshine defaults) ####
+  #### Firewall ####
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [ 47984 47989 47990 48010 ];
