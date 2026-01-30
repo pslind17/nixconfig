@@ -1,5 +1,3 @@
-# xfce.nix
-
 { pkgs, lib, config, ... }: {
 
   services.xserver.enable = true;
@@ -19,5 +17,5 @@
     layout = "us";
     xkbVariant = "";
   };
-  
-  }
+
+}

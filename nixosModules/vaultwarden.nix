@@ -1,6 +1,5 @@
-{ config, pkgs, ... }:
+{ config, pkgs, ... }: {
 
-{
   services.vaultwarden = {
     enable = true;
 
@@ -18,4 +17,5 @@
 
   # Vaultwarden does NOT need firewall access
   # because only Tailscale talks to it
+
 }

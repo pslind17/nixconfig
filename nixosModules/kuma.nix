@@ -1,6 +1,5 @@
-{ pkgs, config, ... }:
+{ pkgs, config, ... }: {
 
-{
   services.uptime-kuma = {
     enable = true;
     settings = {
@@ -10,5 +9,6 @@
   };
 
   networking.firewall.allowedTCPPorts = [ 3001 ];
+
 }
 

@@ -1,5 +1,5 @@
 {
-  description = "NixOS desktop ocnfiguration";
+  description = "NixOS desktop configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -14,81 +14,60 @@
 
       config = {
         allowUnfree = true;
-       };
-     };
+      };
+    };
 
-in
-{
+  in
+  {
+    nixosConfigurations = {
+      king = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+        modules = [
+          ./hosts/king/configuration.nix
+        ];
+      };
 
-nixosConfigurations = {
- king = nixpkgs.lib.nixosSystem {
-   specialArgs = { inherit system; };
+      nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+        modules = [
+          ./hosts/desktop/configuration.nix
+        ];
+      };
 
-   modules = [
-   ./hosts/king/configuration.nix
-   ];
-   };
-  };
-  
-nixosConfigurations = {
- nixos = nixpkgs.lib.nixosSystem {
-   specialArgs = { inherit system; };
+      lightlaptop = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+        modules = [
+          ./hosts/lightlaptop/configuration.nix
+        ];
+      };
 
-   modules = [
-   ./hosts/desktop/configuration.nix
-   ];
-   };
-  };
+      next = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+        modules = [
+          ./hosts/next/configuration.nix
+        ];
+      };
 
-nixosConfigurations = {
- lightlaptop = nixpkgs.lib.nixosSystem {
-   specialArgs = { inherit system; };
+      squire = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+        modules = [
+          ./hosts/squire/configuration.nix
+        ];
+      };
 
-   modules = [
-   ./hosts/lightlaptop/configuration.nix
-   ];
-   };
-  };
+      advisor = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+        modules = [
+          ./hosts/advisor/configuration.nix
+        ];
+      };
 
-nixosConfigurations = {
- next = nixpkgs.lib.nixosSystem {
-   specialArgs = { inherit system; };
-
-   modules = [
-   ./hosts/next/configuration.nix
-   ];
-   };
-  };
-
-nixosConfigurations = {
- squire = nixpkgs.lib.nixosSystem {
-   specialArgs = { inherit system; };
-
-   modules = [
-   ./hosts/squire/configuration.nix
-   ];
-   };
-  };
-
-nixosConfigurations = {
- advisor = nixpkgs.lib.nixosSystem {
-   specialArgs = { inherit system; };
-
-   modules = [
-   ./hosts/advisor/configuration.nix
-   ];
-   };
-  };
-
-  nixosConfigurations = {
- iso = nixpkgs.lib.nixosSystem {
-   specialArgs = { inherit system; };
-
-   modules = [
-   ./hosts/iso/configuration.nix
-   ];
-   };
-  };
-
+      iso = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+        modules = [
+          ./hosts/iso/configuration.nix
+        ];
+      };
+    };
   };
 }

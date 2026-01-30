@@ -1,35 +1,35 @@
 { pkgs, lib, config, ... }: {
 
-networking.hostId = "05eb0a5b";
-boot.supportedFilesystems = [ "zfs" ];
+  networking.hostId = "05eb0a5b";
+  boot.supportedFilesystems = [ "zfs" ];
 
-services.zfs = {
-  autoScrub.enable = true;
-};
+  services.zfs = {
+    autoScrub.enable = true;
+  };
 
-boot.zfs.extraPools = [ "tank" ];
+  boot.zfs.extraPools = [ "tank" ];
 
-services.zfs.autoSnapshot = {
-  enable = true;
-  frequent = 4;
-  hourly = 24;
-  daily = 7;
-  weekly = 4;
-  monthly = 3;
-};
+  services.zfs.autoSnapshot = {
+    enable = true;
+    frequent = 4;
+    hourly = 24;
+    daily = 7;
+    weekly = 4;
+    monthly = 3;
+  };
 
-users.users.borg = {
-  isSystemUser = true;
-  group = "borg";
-  home = "/var/lib/borg";
-  createHome = true;
-  shell = pkgs.bash;
-};
+  users.users.borg = {
+    isSystemUser = true;
+    group = "borg";
+    home = "/var/lib/borg";
+    createHome = true;
+    shell = pkgs.bash;
+  };
 
-users.groups.borg = {};
+  users.groups.borg = { };
 
-environment.systemPackages = with pkgs; [
-  borgbackup
-];
+  environment.systemPackages = with pkgs; [
+    borgbackup
+  ];
 
 }

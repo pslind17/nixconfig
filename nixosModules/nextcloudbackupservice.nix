@@ -1,28 +1,27 @@
-{ config, pkgs, ... }:
+{ config, pkgs, ... }: {
 
-{
+  services.borgbackup.jobs.nextcloud = {
+    paths = [ "/var/lib/nextcloud" ];
 
-services.borgbackup.jobs.nextcloud = {
-  paths = [ "/var/lib/nextcloud" ];
+    repo = "borg@advisor:/srv/nextcloud/borg";
 
-  repo = "borg@advisor:/srv/nextcloud/borg";
+    compression = "zstd";
 
-  compression = "zstd";
+    startAt = "daily";
 
-  startAt = "daily";
+    encryption = {
+      mode = "repokey-blake2";
+      passCommand = "cat /run/secrets/borg-nextcloud-pass";
+    };
 
-  encryption = {
-    mode = "repokey-blake2";
-    passCommand = "cat /run/secrets/borg-nextcloud-pass";
+    prune.keep = {
+      daily = 7;
+      weekly = 4;
+      monthly = 3;
+    };
+
+    # 🔴 THIS is what you are missing
+    doInit = false;
   };
 
-  prune.keep = {
-    daily = 7;
-    weekly = 4;
-    monthly = 3;
-  };
-
-  # 🔴 THIS is what you are missing
-  doInit = false;
-};
 }

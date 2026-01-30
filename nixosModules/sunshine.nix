@@ -1,6 +1,5 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }: {
 
-{
   #### Sunshine ####
   services.sunshine = {
     enable = true;
@@ -53,4 +52,5 @@
     "video"
     "seat"
   ];
+
 }
