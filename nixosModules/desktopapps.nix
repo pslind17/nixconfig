@@ -27,6 +27,7 @@
     nextcloud-client
     bitwarden-desktop
     bitwarden-cli
+    claude-code
   ];
 
   programs.steam = {
