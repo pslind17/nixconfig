@@ -9,7 +9,6 @@ environment.systemPackages = with pkgs; [
   ollama
 ];
 
-{
   services.open-webui = {
     enable = true;
     port = 8080; # Default port
