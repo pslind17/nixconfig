@@ -17,22 +17,14 @@
     extraApps = {
       inherit (config.services.nextcloud.package.packages.apps)
         news contacts calendar tasks notes integration_openai;
+
+        assistant = pkgs.fetchNextcloudApp rec {
+          url =
+            "https://github.com/nextcloud-releases/assistant/releases/download/v3.2.0/assistant-v3.2.0.tar.gz";
+          sha256 = "";
+        };
     };
   };
-
-    extraAppsFromGit = {
-  assistant = {
-    url = "https://github.com/nextcloud/assistant.git";
-    rev = "v2.1.0";  # we will fix this in a moment
-    sha256 = "";
-  };
-
-  textprocessing = {
-    url = "https://github.com/nextcloud/textprocessing.git";
-    rev = "v2.1.0";
-    sha256 = "";
-  };
-};
 
   networking.firewall.allowedTCPPorts = [
     80
