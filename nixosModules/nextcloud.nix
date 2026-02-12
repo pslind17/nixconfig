@@ -21,7 +21,7 @@
         assistant = pkgs.fetchNextcloudApp rec {
   name = "assistant";
   url = "https://github.com/nextcloud-releases/assistant/releases/download/v3.2.0/assistant-v3.2.0.tar.gz";
-  sha256 = "sha256-XgBwUr26qW6wvqhrnhhhhcN4wkI+eXDHnNSm1HDbP6M=";
+  sha256 = "sha256-/6tBSWopPXCeSxU8vN80jHUG8Dno3GQctvJ6rymRqew=";
   license = "agpl3Plus";
 };
     };
