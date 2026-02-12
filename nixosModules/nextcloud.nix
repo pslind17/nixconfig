@@ -16,11 +16,7 @@
 
     extraApps = {
       inherit (config.services.nextcloud.package.packages.apps)
-        news contacts calendar tasks notes integration_openai
-        assistant
-        textprocessing
-        files_texteditor
-        smartpicker;
+        news contacts calendar tasks notes integration_openai;
     };
   };
 
