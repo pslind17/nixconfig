@@ -32,6 +32,7 @@
     rev = "v2.1.0";
     sha256 = "";
   };
+};
 
   networking.firewall.allowedTCPPorts = [
     80
