@@ -9,7 +9,24 @@ environment.systemPackages = with pkgs; [
   ollama
 ];
 
+{
+  services.open-webui = {
+    enable = true;
+    port = 8080; # Default port
+    host = "127.0.0.1";
+    
+    # Optional: Set environment variables for better privacy/config
+    environment = {
+      ANONYMIZED_TELEMETRY = "False";
+      DO_NOT_TRACK = "True";
+      SCARF_NO_ANALYTICS = "True";
+      # If using a remote Ollama instance, uncomment and set:
+      # OLLAMA_API_BASE_URL = "http://127.0.0.1:11434";
+    };
+  };
+
 networking.firewall.allowedTCPPorts = [
     11434
+    8080
   ];
 }
