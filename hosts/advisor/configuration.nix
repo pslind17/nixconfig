@@ -9,7 +9,6 @@
     ./hardware-configuration.nix
     ../../nixosModules/basics.nix
     ../../nixosModules/zfs.nix
-    ../../nixosModules/guacamole.nix
     ../../nixosModules/ollama.nix
   ];
 
