@@ -12,7 +12,7 @@ environment.systemPackages = with pkgs; [
   services.open-webui = {
     enable = true;
     port = 8080; # Default port
-    host = "127.0.0.1";
+    host = "0.0.0.0";
     
     # Optional: Set environment variables for better privacy/config
     environment = {
