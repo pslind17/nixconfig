@@ -10,23 +10,13 @@
     config = {
       dbtype = "pgsql";
       adminpassFile = "/home/pslind/admin-pass-file";
-
-      # Good practice when behind HTTPS / reverse proxy
-      overwriteprotocol = "https";
     };
 
     extraAppsEnable = true;
 
     extraApps = {
       inherit (config.services.nextcloud.package.packages.apps)
-        news
-        contacts
-        calendar
-        tasks
-        notes
-
-        # 🔥 AI Apps
-        integration_openai
+        news contacts calendar tasks notes integration_openai
         assistant
         textprocessing
         files_texteditor
@@ -38,4 +28,5 @@
     80
     443
   ];
+
 }
