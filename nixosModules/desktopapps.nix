@@ -5,11 +5,11 @@
     blender
     microsoft-edge
     vscode
-    libreoffice
+    #libreoffice
     rpi-imager
     freecad
     vlc
-    distrobox
+    #distrobox
     f3d
     arduino
     openrocket
@@ -20,7 +20,7 @@
     thunderbird
     sunshine
     kdePackages.kdenlive
-    lightburn
+    #lightburn
     inkscape
     nextcloud-client
     bitwarden-desktop
