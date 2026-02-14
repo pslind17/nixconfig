@@ -12,7 +12,7 @@
     ../../nixosModules/desktopapps.nix
     ../../nixosModules/sunshine.nix
     ../../nixosModules/waydroid.nix
-    ../../nixosModules/ollama.nix
+    #../../nixosModules/ollama.nix
   ];
 
   # Bootloader.
