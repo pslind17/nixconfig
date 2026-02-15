@@ -26,6 +26,9 @@
     efi.canTouchEfiVariables = true;
   };
 
+  boot.kernelParams = [ "video=DP-2:960x480@60D" ]; 
+
+
   networking.hostName = "king"; # Define your hostname.
 
   # This value determines the NixOS release from which the default
