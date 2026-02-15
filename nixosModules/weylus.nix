@@ -8,4 +8,9 @@
     # Add your user to the weylus group for stylus/multi-touch support
     users = [ "pslind" ]; 
   };
+
+  networking.firewall.allowedTCPPorts = [
+    1701
+    9001
+  ];
 }
