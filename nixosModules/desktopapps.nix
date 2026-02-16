@@ -9,7 +9,7 @@
     rpi-imager
     freecad
     vlc
-    #distrobox
+    distrobox
     f3d
     arduino
     openrocket
