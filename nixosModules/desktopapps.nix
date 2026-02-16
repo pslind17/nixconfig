@@ -5,7 +5,7 @@
     blender
     microsoft-edge
     vscode
-    #libreoffice
+    libreoffice
     rpi-imager
     freecad
     vlc
