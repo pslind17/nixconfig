@@ -14,6 +14,7 @@
     nextcloud-client
     bitwarden-desktop
     bitwarden-cli
+    mission-center
   ];
 
     nixpkgs.config.permittedInsecurePackages = [
