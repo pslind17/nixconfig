@@ -2,10 +2,10 @@
 
   environment.systemPackages = with pkgs; [
     gimp
-    blender
+    #blender
     microsoft-edge
     vscode
-    libreoffice
+    #libreoffice
     rpi-imager
     freecad
     vlc
@@ -16,7 +16,7 @@
     orca-slicer
     popsicle
     python3
-    kicad
+    #kicad
     thunderbird
     sunshine
     kdePackages.kdenlive
@@ -24,7 +24,7 @@
     inkscape
     nextcloud-client
     bitwarden-desktop
-    bitwarden-cli
+    #bitwarden-cli
   ];
 
   programs.steam = {
