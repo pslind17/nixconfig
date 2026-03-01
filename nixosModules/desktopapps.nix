@@ -27,14 +27,6 @@
     bitwarden-cli
   ];
 
-  fonts.fontconfig.enable = true;
-
-fonts.fontconfig.defaultFonts = {
-  serif = [ "Noto Serif" ];
-  sansSerif = [ "Noto Sans" ];
-  monospace = [ "Noto Sans Mono" ];
-};
-
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
