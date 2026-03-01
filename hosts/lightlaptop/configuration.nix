@@ -8,7 +8,9 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../nixosModules/basics.nix
-    ../../nixosModules/xfce.nix
+    #../../nixosModules/xfce.nix
+    ../../nixosModules/lightdesktopapps.nix
+    ../../nixosModules/cosmic.nix
   ];
 
   # Bootloader.
