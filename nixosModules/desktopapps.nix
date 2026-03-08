@@ -25,6 +25,7 @@
     nextcloud-client
     bitwarden-desktop
     #bitwarden-cli
+    obs-studio
   ];
 
   programs.steam = {
