@@ -16,7 +16,7 @@
     orca-slicer
     popsicle
     python3
-    #kicad
+    kicad
     thunderbird
     sunshine
     kdePackages.kdenlive
