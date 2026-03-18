@@ -26,6 +26,7 @@
     bitwarden-desktop
     #bitwarden-cli
     obs-studio
+    audacity
   ];
 
   programs.steam = {
