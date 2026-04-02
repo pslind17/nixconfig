@@ -27,6 +27,7 @@
     #bitwarden-cli
     obs-studio
     audacity
+    discord
   ];
 
   programs.steam = {
