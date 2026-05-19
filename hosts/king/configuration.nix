@@ -14,6 +14,7 @@
     ../../nixosModules/waydroid.nix
     #../../nixosModules/ollama.nix
     ../../nixosModules/weylus.nix
+    ../../nixosModules/nvidia.nix
   ];
 
   # Bootloader.
