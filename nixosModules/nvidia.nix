@@ -43,7 +43,8 @@
     
     # Required if using a wlroots compositor (like Hyprland or Sway)
     WLR_NO_HARDWARE_CURSORS = "1";
+    KWIN_FORCE_SW_CURSORS = "1";
   };
 
-  KWIN_FORCE_SW_CURSORS = "1";
+  
 }
