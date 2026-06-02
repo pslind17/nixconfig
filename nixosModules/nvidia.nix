@@ -1,26 +1,12 @@
 { config, pkgs, ... }:
 
 {
-  # 1. License agreements (Required for Nvidia binaries)
   nixpkgs.config.allowUnfree = true;
 
-  # 2. Hard-lock system to an older, highly reliable LTS kernel
-  # This fixes updates that aggressively drop older Pascal architectures
-  boot.kernelPackages = pkgs.linuxPackages_6_6;
+  # 1. Kernel and Boot parameters (Crucial for GTX 1080 / Wayland initialization)
+  boot.kernelParams = [ "nvidia_drm.modeset=1" "nvidia_drm.fbdev=1" ];
 
-  # 3. Prevent fallback driver modules from hijacking the GPU
-  boot.blacklistedKernelModules = [ "nouveau" "nvidiafb" ];
-
-  # 4. Force stage-1 initialization parameters
-  boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
-  
-  boot.kernelParams = [ 
-    "nvidia-drm.modeset=1" 
-    "nvidia_drm.modeset=1" 
-    "nvidia_drm.fbdev=1" 
-  ];
-
-  # 5. Core graphics framework backend hooks
+  # 2. Base Graphics & Wayland support
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -28,23 +14,34 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # 6. Specific Driver Branch Locking
+  # 3. Nvidia Driver Configuration for Pascal + Wayland
   hardware.nvidia = {
+    # Modesetting is STRICTLY required for Wayland
     modesetting.enable = true;
+
+    # Fixes graphical corruption/flicker after suspend
     powerManagement.enable = true;
     powerManagement.finegrained = false;
-    open = false; # Required: True open-source modules crash on GTX 1080s
+
+    # MUST be false for GTX 1080 (open-source modules break Pascal Wayland)
+    open = false; 
+
     nvidiaSettings = true;
-    
-    # We choose the production branch instead of the shifting "stable" tag
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # 7. Wayland environment desktop variable handshakes
+  # 4. Environment variables for Wayland + Nvidia + KDE Plasma
   environment.sessionVariables = {
+    # Hint Electron apps (Discord, VS Code) to use Wayland natively
     NIXOS_OZONE_WL = "1";
+    
+    # Force hardware acceleration in Clutter-based applications
     CLUTTER_BACKEND = "wayland";
+    
+    # Directs Qt applications to utilize Wayland
     QT_QPA_PLATFORM = "wayland;xcb";
+
+    # Hardware acceleration backing for Firefox/Chromium
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
