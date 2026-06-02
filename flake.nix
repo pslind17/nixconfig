@@ -1,48 +1,73 @@
-{ config, pkgs, ... }:
-
 {
-  nixpkgs.config.allowUnfree = true;
+  description = "NixOS desktop configuration";
 
-  # 1. Kernel and Boot parameters (Crucial for GTX 1080 / Wayland initialization)
-  boot.kernelParams = [ "nvidia_drm.modeset=1" "nvidia_drm.fbdev=1" ];
-
-  # 2. Base Graphics & Wayland support
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-26.05";
   };
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  outputs = { self, nixpkgs }:
+  let
+    system = "x86_64-linux";
 
-  # 3. Nvidia Driver Configuration for Pascal + Wayland
-  hardware.nvidia = {
-    # Modesetting is STRICTLY required for Wayland
-    modesetting.enable = true;
+    pkgs = import nixpkgs {
+      inherit system;
 
-    # Fixes graphical corruption/flicker after suspend
-    powerManagement.enable = true;
-    powerManagement.finegrained = false;
+      config = {
+        allowUnfree = true;
+      };
+    };
 
-    # MUST be false for GTX 1080 (open-source modules break Pascal Wayland)
-    open = false; 
+  in
+  {
+    nixosConfigurations = {
+      king = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+        modules = [
+          ./hosts/king/configuration.nix
+        ];
+      };
 
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
+      nixos = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+        modules = [
+          ./hosts/desktop/configuration.nix
+        ];
+      };
 
-  # 4. Environment variables for Wayland + Nvidia + KDE Plasma
-  environment.sessionVariables = {
-    # Hint Electron apps (Discord, VS Code) to use Wayland natively
-    NIXOS_OZONE_WL = "1";
-    
-    # Force hardware acceleration in Clutter-based applications
-    CLUTTER_BACKEND = "wayland";
-    
-    # Directs Qt applications to utilize Wayland
-    QT_QPA_PLATFORM = "wayland;xcb";
+      lightlaptop = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+        modules = [
+          ./hosts/lightlaptop/configuration.nix
+        ];
+      };
 
-    # Hardware acceleration backing for Firefox/Chromium
-    GBM_BACKEND = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      next = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+        modules = [
+          ./hosts/next/configuration.nix
+        ];
+      };
+
+      squire = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+        modules = [
+          ./hosts/squire/configuration.nix
+        ];
+      };
+
+      advisor = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+        modules = [
+          ./hosts/advisor/configuration.nix
+        ];
+      };
+
+      iso = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+        modules = [
+          ./hosts/iso/configuration.nix
+        ];
+      };
+    };
   };
 }
