@@ -39,6 +39,7 @@
 
   nixpkgs.config.permittedInsecurePackages = [
     "electron-19.1.9"
+    "electron-39.8.10"
   ];
 
   services.printing.enable = true;
