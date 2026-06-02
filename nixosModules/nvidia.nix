@@ -3,19 +3,18 @@
 {
   nixpkgs.config.allowUnfree = true;
 
-  # 1. Base Graphics & Wayland support
+  # 1. Kernel and Boot parameters (Crucial for GTX 1080 / Wayland initialization)
+  boot.kernelParams = [ "nvidia_drm.modeset=1" "nvidia_drm.fbdev=1" ];
+
+  # 2. Base Graphics & Wayland support
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
 
-  # Force your Display Manager (like GDM or SDDM) to use Wayland
-  # GDM/Wayland no longer supports explicit `gdm.wayland` settings in newer GNOME.
-  # The display manager now selects the correct session automatically.
-
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # 2. Nvidia Driver Configuration for Pascal + Wayland
+  # 3. Nvidia Driver Configuration for Pascal + Wayland
   hardware.nvidia = {
     # Modesetting is STRICTLY required for Wayland
     modesetting.enable = true;
@@ -31,7 +30,7 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # 3. Environment variables for Wayland + Nvidia
+  # 4. Environment variables for Wayland + Nvidia + KDE Plasma
   environment.sessionVariables = {
     # Hint Electron apps (Discord, VS Code) to use Wayland natively
     NIXOS_OZONE_WL = "1";
@@ -40,12 +39,10 @@
     CLUTTER_BACKEND = "wayland";
     
     # Directs Qt applications to utilize Wayland
-    QT_QPA_PLATFORM = "wayland";
-    
-    # Required if using a wlroots compositor (like Hyprland or Sway)
-    WLR_NO_HARDWARE_CURSORS = "1";
-    KWIN_FORCE_SW_CURSORS = "1";
-  };
+    QT_QPA_PLATFORM = "wayland;xcb";
 
-  
+    # Hardware acceleration backing for Firefox/Chromium
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  };
 }
