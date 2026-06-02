@@ -1,52 +1,49 @@
 { config, pkgs, ... }:
 
 {
-  # 1. Allow unfree packages (Mandatory for proprietary Nvidia drivers)
+  # 1. Allow Proprietary Drivers
   nixpkgs.config.allowUnfree = true;
 
-  # 2. Hard-inject Kernel Boot Arguments to force DRM mode setting
+  # 2. Force Early Initramfs Kernel Loading (Crucial Step)
+  # This forces NixOS to load the hardware drivers immediately during stage 1 boot
+  boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  
+  # Kernel boot arguments to override display falls
   boot.kernelParams = [ 
     "nvidia-drm.modeset=1" 
     "nvidia_drm.modeset=1" 
     "nvidia_drm.fbdev=1" 
   ];
 
-  # 3. Graphics Framework Config
+  # 3. Base Graphics Stack Configuration
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
 
-  # Load the explicit driver kernel module via XServer framework
+  # Direct the X11 server and Wayland layers to bind the hardware driver
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # 4. Strict Nvidia Configuration targeted for GTX 1080 (Pascal Architecture)
+  # 4. Driver Module Specifications
   hardware.nvidia = {
     modesetting.enable = true;
     
-    # Prevents graphical artifacting on suspend/resume steps
+    # Required to prevent frame drops on suspend
     powerManagement.enable = true;
     powerManagement.finegrained = false;
 
-    # MUST stay false. Open-source modules completely break GTX 10-series cards
+    # MUST be false for GTX 1080 Pascal hardware
     open = false; 
 
     nvidiaSettings = true;
-
-    # Explicit fallback pinning bypasses broken "stable" aliases from the update
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # 5. Environment Variables for System-Wide Wayland & Hardware Acceleration
+  # 5. Native Wayland Environment Handshakes
   environment.sessionVariables = {
-    # Directs Electron applications (Discord, VS Code) to run via native Wayland
     NIXOS_OZONE_WL = "1";
-    
-    # Hardware acceleration UI frameworks
     CLUTTER_BACKEND = "wayland";
     QT_QPA_PLATFORM = "wayland;xcb";
-
-    # Maps out direct rendering pathways
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
