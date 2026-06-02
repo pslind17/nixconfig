@@ -10,7 +10,8 @@
   };
 
   # Force your Display Manager (like GDM or SDDM) to use Wayland
-  services.xserver.displayManager.gdm.wayland = true; 
+  # GDM/Wayland no longer supports explicit `gdm.wayland` settings in newer GNOME.
+  # The display manager now selects the correct session automatically.
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
