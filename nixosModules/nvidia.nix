@@ -1,45 +1,39 @@
 { config, pkgs, ... }:
 
 {
-  # 1. Allow Proprietary Drivers
+  # 1. Mandatory licensing for proprietary modules
   nixpkgs.config.allowUnfree = true;
 
-  # 2. Force Early Initramfs Kernel Loading (Crucial Step)
-  # This forces NixOS to load the hardware drivers immediately during stage 1 boot
+  # 2. Hard-blacklist open source Nouveau driver module configurations
+  boot.blacklistedKernelModules = [ "nouveau" "nvidiafb" ];
+
+  # 3. Inject Early Initramfs Kernel Loading
   boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   
-  # Kernel boot arguments to override display falls
   boot.kernelParams = [ 
     "nvidia-drm.modeset=1" 
     "nvidia_drm.modeset=1" 
     "nvidia_drm.fbdev=1" 
   ];
 
-  # 3. Base Graphics Stack Configuration
+  # 4. Core Display Architecture Setup
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
 
-  # Direct the X11 server and Wayland layers to bind the hardware driver
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # 4. Driver Module Specifications
   hardware.nvidia = {
     modesetting.enable = true;
-    
-    # Required to prevent frame drops on suspend
     powerManagement.enable = true;
     powerManagement.finegrained = false;
-
-    # MUST be false for GTX 1080 Pascal hardware
-    open = false; 
-
+    open = false; # Required: Open modules completely break Pascal hardware
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # 5. Native Wayland Environment Handshakes
+  # 5. Environment Rules for Core Desktop Spanning
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     CLUTTER_BACKEND = "wayland";
