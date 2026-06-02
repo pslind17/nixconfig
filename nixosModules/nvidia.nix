@@ -1,13 +1,17 @@
 { config, pkgs, ... }:
 
 {
-  # 1. Mandatory licensing for proprietary modules
+  # 1. License agreements (Required for Nvidia binaries)
   nixpkgs.config.allowUnfree = true;
 
-  # 2. Hard-blacklist open source Nouveau driver module configurations
+  # 2. Hard-lock system to an older, highly reliable LTS kernel
+  # This fixes updates that aggressively drop older Pascal architectures
+  boot.kernelPackages = pkgs.linuxPackages_6_6;
+
+  # 3. Prevent fallback driver modules from hijacking the GPU
   boot.blacklistedKernelModules = [ "nouveau" "nvidiafb" ];
 
-  # 3. Inject Early Initramfs Kernel Loading
+  # 4. Force stage-1 initialization parameters
   boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
   
   boot.kernelParams = [ 
@@ -16,7 +20,7 @@
     "nvidia_drm.fbdev=1" 
   ];
 
-  # 4. Core Display Architecture Setup
+  # 5. Core graphics framework backend hooks
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -24,16 +28,19 @@
 
   services.xserver.videoDrivers = [ "nvidia" ];
 
+  # 6. Specific Driver Branch Locking
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
     powerManagement.finegrained = false;
-    open = false; # Required: Open modules completely break Pascal hardware
+    open = false; # Required: True open-source modules crash on GTX 1080s
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    
+    # We choose the production branch instead of the shifting "stable" tag
+    package = config.boot.kernelPackages.nvidiaPackages.production;
   };
 
-  # 5. Environment Rules for Core Desktop Spanning
+  # 7. Wayland environment desktop variable handshakes
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     CLUTTER_BACKEND = "wayland";
