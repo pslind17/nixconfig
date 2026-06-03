@@ -2,9 +2,19 @@
 
 {
   nixpkgs.config.allowUnfree = true;
-  hardware.graphics.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.open = false;  # see the note above
 
-  
+  services.xserver.videoDrivers = [ "nvidia" ];
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  hardware.nvidia = {
+    open = false; # GTX 1080 requires proprietary driver
+
+    modesetting.enable = true;
+
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
 }
