@@ -9,9 +9,6 @@
     enable32Bit = true;
   };
 
-  # Force your Display Manager (like GDM or SDDM) to use Wayland
-  services.xserver.displayManager.gdm.wayland = true; 
-
   services.xserver.videoDrivers = [ "nvidia" ];
 
   # 2. Nvidia Driver Configuration for Pascal + Wayland
