@@ -11,10 +11,10 @@
   };
 
   hardware.nvidia = {
-    open = false; # GTX 1080 requires proprietary driver
-
+    open = false;
     modesetting.enable = true;
 
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    # GTX 1080 (Pascal) requires the legacy 580 branch
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   };
 }
