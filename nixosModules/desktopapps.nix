@@ -28,6 +28,7 @@
     obs-studio
     audacity
     discord
+    ugs
   ];
 
   programs.steam = {
