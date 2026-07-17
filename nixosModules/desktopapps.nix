@@ -18,7 +18,7 @@
     python3
     kicad
     thunderbird
-    sunshine
+    #sunshine
     kdePackages.kdenlive
     #lightburn
     inkscape
