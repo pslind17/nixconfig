@@ -10,7 +10,7 @@
     ../../nixosModules/basics.nix
     ../../nixosModules/plasma.nix
     ../../nixosModules/desktopapps.nix
-    ../../nixosModules/sunshine.nix
+    #../../nixosModules/sunshine.nix
     ../../nixosModules/waydroid.nix
     #../../nixosModules/ollama.nix
     ../../nixosModules/weylus.nix
