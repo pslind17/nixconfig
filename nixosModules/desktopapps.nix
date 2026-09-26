@@ -29,6 +29,7 @@
     audacity
     discord
     ugs
+    simple-scan
   ];
 
   programs.steam = {
